@@ -124,12 +124,15 @@ df['column-name'].cummin()
 Cumulative Product
 df['column-name'].cumprod()
 
-## To count no in columns
+## To count number of items in columns
 df['column_name'].value_counts()
+
 To sort
 df['column_name'].value_counts(sort=True)
+
 To calculate proportions from total
 df['column_name'].value_counts(normalize=True)
+
 to calculate proportions and sort
 df['column_name'].value_counts(sort=Ture,normalize=True)
 
