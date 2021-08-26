@@ -27,7 +27,7 @@ An index of columns: the column names
 .index: 
 An index for the rows: either row numbers or row names
 
-## Sorting and Subsetting data
+# Sorting and Subsetting data
 
 ## Sorting Rows
 
@@ -54,7 +54,82 @@ df[["col_a", "col_b"]]   * dont forget two square brackets
 df[df["column name"] > 60]
 df[df["column name"] == "attribute"]
 df[(df["cl1"] > 60) & (df["cl2"] == "attribute")]
+df[(df["col"] == "value_1") | (df["col"] == "value_2")]
 
 attributedf = ["a1", "a2", "a3"]
-condition = df["attribute"].isin(attributedf)
+condition = df["column"].isin(attributedf)
 df[condition]
+df[df["col"].isin(["value_1", "value_2"])]
+
+## Dropping duplicate names
+df.drop_duplicates(subset='column_name') 
+
+## Dropping duplicate pairs
+df.drop_duplicates(subset=['column_name1','column_name2') 
+
+## Adding new columns
+
+df['new column'] = df['cl1] + df[cl2]
+df['new column'] = df['cl1] /100
+
+# Summary Statistics
+
+Mean
+df['column-name'].mean()
+
+Median
+df['column-name'].median()
+
+Mode
+df['column-name'].mode()
+
+Minimum
+df['column-name'].min()
+
+Maximum
+df['column-name'].max()
+
+You can use min and max functions to get the oldest and latest dates
+
+Variance
+df['column-name'].var()
+
+Standard Deviation
+df['column-name'].std()
+
+Sum
+df['column-name'].sum()
+
+The .agg() method
+def pct30(column):
+    return column.quantile(0.3)
+- To calculate the 30th percentile   for example 
+
+df['column-name'].agg(pct30)
+
+agg can be used on multiple columns
+
+It can also be used for multiple summaries
+df['column-name'].agg([pct30,pct40])
+
+Cumulative Sum
+df['column-name'].cumsum()
+
+Cumulative Maximum
+df['column-name'].cummax()
+
+Cumulative Minimum
+df['column-name'].cummin()
+
+Cumulative Product
+df['column-name'].cumprod()
+
+## To count no in columns
+df['column_name'].value_counts()
+To sort
+df['column_name'].value_counts(sort=True)
+To calculate proportions from total
+df['column_name'].value_counts(normalize=True)
+to calculate proportions and sort
+df['column_name'].value_counts(sort=Ture,normalize=True)
+
