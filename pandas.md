@@ -124,6 +124,21 @@ df['column-name'].cummin()
 Cumulative Product
 df['column-name'].cumprod()
 
+Summary Statistics for groups
+
+df.groupby("column_name")['Column_2'].mean()
+
+For multiple Statistics
+df.groupby("column_name")['Column_2'].agg(min,max,sum)
+
+Multiple columns
+df.groupby(["column_name","column_name"])['Column_2'].agg(min,max,sum)
+
+## Pivot Table
+df.pivot_table(values="column1",index="column2")
+default mean
+To change - df.pivot_table(values="column1",index="column2", aggfunc=np.median)
+
 ## To count number of items in columns
 df['column_name'].value_counts()
 
