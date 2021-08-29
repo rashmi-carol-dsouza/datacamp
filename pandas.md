@@ -138,6 +138,18 @@ df.groupby(["column_name","column_name"])['Column_2'].agg(min,max,sum)
 df.pivot_table(values="column1",index="column2")
 default mean
 To change - df.pivot_table(values="column1",index="column2", aggfunc=np.median)
+multiple functions - df.pivot_table(values="column1",index="column2", aggfunc=[np.mean,np.median])
+
+Two variables
+df.pivot_table(values="column1",index="column2", columns = "column3")
+
+nan is due to missing values
+to fill in values 
+df.pivot_table(values="column1",index="column2", columns = "column3", fill_value=0)
+for adding mean
+df.pivot_table(values="column1",index="column2", columns = "column3", fill_value=0, margins=True)
+
+
 
 ## To count number of items in columns
 df['column_name'].value_counts()
@@ -151,3 +163,49 @@ df['column_name'].value_counts(normalize=True)
 to calculate proportions and sort
 df['column_name'].value_counts(sort=Ture,normalize=True)
 
+# Explcit Indexes
+
+Explicit indexes
+DataFrames are composed of three parts: 
+a NumPy array for the data, 
+and two indexes to store the row and column details
+
+.columns
+Index object of column names
+.index
+Index object of row numbers
+
+how to set a column as the index
+df_ind = df.set_index("column1")
+
+how to remove an index
+df_ind.reset_index()
+
+how to drop an index
+df_ind.reset_index(drop=True)
+
+how to set a multilevel index
+1. Set hierarchical index
+df_ind = df.set_index(["column_h1","column_h2"])
+rows_to_keep = [("Ch1_attribute","Ch2_attribute"),("Ch1_attribute","Ch2_attribute")]
+print(df_ind.loc[rows_to_keep])
+
+Indexes make subsetting simpler
+
+Sorting by index values
+
+> Sort df by index values
+print(df.sort_index())
+
+> Sort df by index values at the column level
+print(df.sort_index(level="column"))
+
+> Sort df by column1 then descending column2
+print(df.sort_index(level=["column1", "column1"], ascending = [True, False]))
+
+## Subsetting using loc
+df.loc["column_name"]
+Without an index, subsetting takes the form 
+df[df["column"].isin(values)]
+With an index, subsetting takes the form 
+df_ind.loc[values]
