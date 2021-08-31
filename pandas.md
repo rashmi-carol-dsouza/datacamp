@@ -209,3 +209,52 @@ Without an index, subsetting takes the form
 df[df["column"].isin(values)]
 With an index, subsetting takes the form 
 df_ind.loc[values]
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Missing Values
+Nan - not a number
+
+## Detecting missing values
+All missing values
+df.isna()
+
+Any missing values in column
+df.isna().any()
+
+Counting missing values in column
+df.isna().sum()
+
+How to visualize missing data using a bar plot
+import matplotlib.pyplot as plt
+df.isna().sum().plot(kind="bar")
+plt.show()
+
+Removing rows that contain missing values
+df.dropna()
+Not ideal if there is a lot of data
+
+Replacing missing values with another value
+df.fillna(0)
+
+## Creating Data Frames
+pd.DataFrame(Name of list/Name of Dictionary)
+
+## Writing and Reading CSV
+new_file = pd.read_csv('nameoffile.csv')
+
+adding new column
+file['name of column'] = file["onevalue"]/file["another value"], etc
+
+new file 
+new_file.to_csv(""new_name.csv")
