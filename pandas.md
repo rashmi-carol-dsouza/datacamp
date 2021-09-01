@@ -210,17 +210,52 @@ df[df["column"].isin(values)]
 With an index, subsetting takes the form 
 df_ind.loc[values]
 
+## Slicing and subsetting using loc and iloc
 
+Slicing Lists
 
+df= [a,b,c,d,e]
+df[2:4]
 
+Slicing Data Frames
+First Sort Index
+df = df.set_index(['column1','column2']).sort_index()
 
+Slicing out rows at index level
 
+df.loc['row1':'row3']
+final value row 3 will be included
+does not work on inner index level
 
+To slice inner index correctly
+df.loc[('row1','row1correspondingrowvalue":'row3'),('row1correspondingrowvalue")]
 
+Slicing columns
+df.loc[:,'columnname']
 
+Slicing rows and columns
+df.loc[('row1','row1correspondingrowvalue":'row3','row1correspondingrowvalue"),"column1":"column3"]
 
+Subsetting by row/column no
+df.iloc[2:5 , 1:3]
 
+Compared to slicing lists, there are a few things to remember.
 
+You can only slice an index if the index is sorted (using .sort_index()).
+To slice at the outer level, first and last can be strings.
+To slice at inner levels, first and last should be tuples.
+If you pass a single slice to .loc[], it will slice the rows.
+
+## Pivoting Tables
+
+pv_df = df.pivot_table("column", index='row',columns='columns')
+default aggregation in mean
+
+you can use .loc[] function on pv_df
+
+The axis argument
+pv_df.mean(axis='index')   across columns
+pv_df.mean(axis='columns')   across rows
 
 ## Missing Values
 Nan - not a number
