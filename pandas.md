@@ -178,6 +178,9 @@ Index object of row numbers
 how to set a column as the index
 df_ind = df.set_index("column1")
 
+df = pd.read_csv("df.csv", index_col=["column"])
+df = pd.read_csv("df.csv", index_col=["column","column"])
+
 how to remove an index
 df_ind.reset_index()
 
