@@ -270,6 +270,9 @@ df.isna().any()
 Counting missing values in column
 df.isna().sum()
 
+Counting null value in column
+df.isnull().sum()
+
 How to visualize missing data using a bar plot
 import matplotlib.pyplot as plt
 df.isna().sum().plot(kind="bar")
