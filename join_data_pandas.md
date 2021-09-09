@@ -119,3 +119,26 @@ Verifying concatenations
 .concat(verify_integrity=False)
 default is false
 if set to true, it will check if there are duplicate values in the index and raise an error
+
+## Using merge_order()
+The results are similar to the standard merge method with an outer join, but here that the results are sorted. The sorted results make this a useful method for ordered or time-series data
+
+* joins - on - left_on, right_on
+* type of join - how - inner, outer , left, right
+* default order - outer
+* Supports suffixes
+* calling function - pd.merge_ordered(df1,df2)
+
+## Forward fill
+pd.merge_ordered(df1, df2, on="column", suffixes=("_df1","_df2"), fill_method="ffill")
+
+## merge.asof()
+similar to merge_ordered
+match on nearest key not exact match
+Merged "on" column must be sorted
+
+pd.merge_asof(df1,df2, on="column",suffixes=("_df1","_df2"))
+
+With direction
+pd.merge_asof(df1,df2, on="column",suffixes=("_df1","_df2"),direction="forward")
+directions can also be "backwards" and "nearest"
