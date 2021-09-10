@@ -142,3 +142,26 @@ pd.merge_asof(df1,df2, on="column",suffixes=("_df1","_df2"))
 With direction
 pd.merge_asof(df1,df2, on="column",suffixes=("_df1","_df2"),direction="forward")
 directions can also be "backwards" and "nearest"
+
+## Selecting data using .query()
+
+Accepts input string - used to determine what rows are returned
+
+df.query("column >= 100")
+df.query("column1 > 100 and column2<100")
+df.query("column1 > 100 or column2<100")
+
+df.query('column1=="text" or (column1=="text" and column2 =90)')
+
+## Reshaping data with .melt()
+
+To convert wide talbes to long tables
+
+df = df.melt(id_vars = ['column1','column2'])
+
+use value vars to control which data is displayed
+df = df.melt(id_vars = ['column1','column2'],value_vars=['attribute','attribute'])
+
+changing column names
+
+df = df.melt(id_vars = ['column1','column2'],value_vars=['attribute','attribute'],var_name=['year'],value_name='dollars')

@@ -1,8 +1,46 @@
 import matplotlib.pyplot as plt
 
-## To show plot
+## Ploting
+
+fig,ax = plt.subplots()
+ax.plot(df["column1"],df['column2'])
+ax.plot(df2["column1"],df2['column2'])
+
+* To show plot
 
 plt.show()
+
+* Adding markers
+
+ax.plot(df["column1"],df['column2'],marker="o")
+
+o for circles
+v for downward facing triangles
+
+* Changing line styles
+
+ax.plot(df["column1"],df['column2'],marker="o",linestyle="--")
+
+use argument 'none' for no line
+
+* To change color
+
+ax.plot(df["column1"],df['column2'],marker="o",linestyle="--",color='r')
+
+* To customize axes lables
+
+ax.set_xlabel("Label")
+ax.set_ylabel("Label")
+
+* To add title
+
+ax.set_title("Title")
+
+## Small multiples with plt.subplots
+
+fig,ax = plt.subplots()
+fig,ax = plt.subplots(3,2)
+
 
 ## Histogram
 
