@@ -41,6 +41,82 @@ ax.set_title("Title")
 fig,ax = plt.subplots()
 fig,ax = plt.subplots(3,2)
 
+(row,column)
+
+ax[0].plot(df["column1"],df['column2'])
+
+* To standardize sub plots
+
+fig,ax = plt.subplots(3,2, sharey=True)
+
+## Plotting time-series data
+
+fig,ax = plt.subplots()
+ax.plot(df.index,df['column'])
+
+* Zooming in on a decade
+sixties = df["start date" : "end date"]
+ax.plot(sixties.index,sixties['column'])
+
+* Zooming in on one year
+sixty_one = df["start date" : "end date"]
+ax.plot(sixty_one.index,sixty_one['column'])
+
+* use parse_dates argument - for converting a sequence of string columns to an array of datetime instances
+
+## Plotting two time-series together
+
+fig,ax = plt.subplots()
+ax.plot(df.index,df['column'])
+ax.plot(df2.index,df2['column'])
+
+* Creating a twin of axes
+ax2 = ax.twinx()
+
+example
+fig,ax = plt.subplots()
+ax.plot(df.index,df['column'],color="red")
+ax.set_xlabel("Label")
+ax.set_ylabel("Label",color="red")
+ax.tick_params("y", colors="red")
+ax2 = ax.twinx()
+ax.plot(df2.index,df2['column'],color="blue")
+ax2.set_ylabel("Label",color="blue")
+ax.tick_params("y", colors="blue")
+plt.show()
+
+* A function that plots time-series
+def plot_timeseries(axes,x,y,color,xlabel,ylabel):
+    axes.plot(x,y,color=color)
+    axes.set_xlabel(xlabel)
+    axes.set_ylabel(ylabel)
+    axes.tick_params("y",colors=color)
+
+- calling the function to plot a two time-series 
+
+fig,ax=plt.subplots()
+plot_timeseries(ax,df.index,df['column'],'red','Label','Label')
+ax2 = ax.twinx()
+plot_timeseries(ax,df.index,df['column'],'red','Label','Label')
+
+## Annotating time series data
+
+ax2.annotate("explanation", xy=(pd.Timestamp("date"),1))
+
+- positioning the text
+
+ax2.annotate("explanation", xy=(pd.Timestamp("date"),1),xytext=(pd.Timestamp("position-date"),-0.2))
+
+- adding arrow between anotated text and text
+
+ax2.annotate("explanation", xy=(pd.Timestamp("date"),1),xytext=(pd.Timestamp("position-date"),-0.2),arrowprops={})
+
+- customising the arrow properties
+
+ax2.annotate("explanation", xy=(pd.Timestamp("date"),1),xytext=(pd.Timestamp("position-date"),-0.2),arrowprops={'arrowstyle':'->','color':'gray'})
+
+other customizations - https://matplotlib.org/users/annotations.html
+
 
 ## Histogram
 
