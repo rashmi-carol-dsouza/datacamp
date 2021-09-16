@@ -117,6 +117,152 @@ ax2.annotate("explanation", xy=(pd.Timestamp("date"),1),xytext=(pd.Timestamp("po
 
 other customizations - https://matplotlib.org/users/annotations.html
 
+# Quantitative Comparisions 
+
+## Bar
+
+fig,ax = plt.subplots()
+ax.bar(df.index,df['column'])
+
+* To fix labels incase of overlaping
+
+ax.set_xticklables(df.index,rotation=90)
+
+* Adding lables
+
+ax.set_xlabel("Label")
+ax.set_ylabel("Label")
+
+* Creating a stacked bar chart
+
+ax.bar(df.index,df['column'])
+ax.bar(df.index,df['column2'],bottom=df['colomn1'])
+
+* Creating a stack with three datas
+
+ax.bar(df.index,df['column'])
+ax.bar(df.index,df['column2'],bottom=df['colomn1'])
+ax.bar(df.index,df['column3'],bottom=df['colomn1']+df['column2'])
+
+* Adding a label
+ax.bar(df.index,df['column'],label = 'label1')
+ax.bar(df.index,df['column2'],bottom=df['colomn1'],label = 'label2')
+ax.bar(df.index,df['column3'],bottom=df['colomn1']+df['column2'],label = 'label3')
+ax.legend()
+
+## Histogram
+
+fig,ax = plt.subplots()
+ax.hist(df["column"])
+ax.hist(df2['column'])
+ax.set_xlabel("Label")
+ax.set_ylabel("Label")
+plt.show()
+
+* Labels are required
+
+ax.hist(df["column"], label="Label")
+
+- add legend
+
+ax.legend()
+
+* Setting number of bins
+
+ax.hist(df["column"], label="Label", bins=4)
+
+* Setting boundaries
+
+ax.hist(df["column"], label="Label",bins=[100,200,300,etc])
+
+* Adjusting transparency
+
+ax.hist(df["column"], label="Label",bins=[100,200,300,etc], histtype="step")
+
+
+## Statistical plotting
+
+* Adding error bars to bar charts
+
+ax.bar("Label",df['column'].mean(),yerr=df['column'].std())
+
+* Adding error bars to a line plot
+
+fig,ax = plt.subplots()
+ax.errorbar(df['column1'],df["column2"],yerr=df["column-std-dev"])
+
+* Adding box plots
+fig,ax = plt.subplots()
+ax.boxplot([df["column"],df2['column']])
+ax.set_xticklabels(["label1","label2"])
+
+## Quantative comparision - scatter plots
+
+fig,ax=plt.subplots()
+ax.scatter(df["column1"],df["column2"])
+
+* Customizing scatter plots
+
+eighties = df["start_date":"end_date"]
+nineties = df["start_date":"end_date"]
+fig,ax=plt.subplots()
+ax.scatter(eighties["column1"],eighties["column2"],color="blue",label="eighties")
+ax.scatter(nineties["column1"],nineties["column2"],color="red",label="nineties")
+ax.legend()
+
+* Encoding a third variable by colour
+
+fig,ax=plt.subplots()
+ax.scatter(df["column1"],df["column2"],c=df.index)
+
+## Preparing figures to share with others
+
+## Changing plot styles
+
+plt.style.use("ggplot")
+
+* To go back to default style
+
+plt.style.use("default")
+
+More examples - https://matplotlib.org/2.0.2/gallery.html#style_sheets
+
+* General Guidelines
+
+Dont use dark backgrounds. You can use colorblind friendly style if colors are important. 
+Avoid colored background if you will print the visualization to use less ink. If printed is b&w, use 'grayscale'
+
+## Saving your visualizations
+
+last line of code - fig.savefig("df.png")
+
+Other formats 
+
+- jpg - good choice if image is to be used for website or other uploads
+
+- svg - good choice if image is to be edited later in another photo editing software
+
+* To control file size (quality = 1 to 100)
+fig.savefig("df.jpg", quality=50)
+fig.savefig("df.jpg", dpi=300)
+
+* Controlling figure size (Width,height)
+
+fig.set_size_inches([5,3])
+
+
+* Checking files in directory
+
+ls
+
+## Automating figures from data
+
+fig,ax = plt.subplots()
+
+for attribute in column:
+    column_df = df[df["column"] == attribute]
+    ax.bar(attribute,column_df['column'].mean(),yerr=column_df['column'].std())
+
 
 ## Histogram
 

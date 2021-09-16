@@ -65,7 +65,12 @@ df[df["col"].isin(["value_1", "value_2"])]
 df.drop_duplicates(subset='column_name') 
 
 ## Dropping duplicate pairs
-df.drop_duplicates(subset=['column_name1','column_name2') 
+df.drop_duplicates(subset=['column_name1','column_name2')
+
+## Getting unique values of a column
+
+df1=df["column"].unique()
+print(df1)
 
 ## Adding new columns
 
