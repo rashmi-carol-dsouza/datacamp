@@ -191,7 +191,7 @@ ax.bar("Label",df['column'].mean(),yerr=df['column'].std())
 fig,ax = plt.subplots()
 ax.errorbar(df['column1'],df["column2"],yerr=df["column-std-dev"])
 
-* Adding box plots
+* Adding box plots 
 fig,ax = plt.subplots()
 ax.boxplot([df["column"],df2['column']])
 ax.set_xticklabels(["label1","label2"])
